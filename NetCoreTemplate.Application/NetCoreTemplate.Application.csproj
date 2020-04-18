@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetCoreTemplate.Domain\NetCoreTemplate.Domain.csproj" />
+    <ProjectReference Include="..\NetCoreTemplate.Infrastructure\NetCoreTemplate.Infrastructure.csproj" />
+    <ProjectReference Include="..\NetCoreTemplate.Utility\NetCoreTemplate.Utility.csproj" />
+  </ItemGroup>
+
+</Project>
