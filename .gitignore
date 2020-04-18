@@ -1,0 +1,7 @@
+obj
+bin
+.vs
+PublishProfiles
+Log
+internal-nlog.txt
+*.user
