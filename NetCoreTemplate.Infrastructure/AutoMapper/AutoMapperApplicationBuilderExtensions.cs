@@ -11,47 +11,41 @@ namespace NetCoreTemplate.Infrastructure
 {
     public static class AutoMapperApplicationBuilderExtensions
     {
-        private static IServiceProvider _serviceProvider;
+        private static IMapper _mapper { set; get; }
         public static void UseStateAutoMapper(this IApplicationBuilder applicationBuilder)
         {
-            _serviceProvider = applicationBuilder.ApplicationServices;
+            var serviceProvider = applicationBuilder.ApplicationServices;
+            _mapper = serviceProvider.GetRequiredService<IMapper>();
         }
 
         public static TDestination Map<TDestination>(object source)
         {
-            var mapper = _serviceProvider.GetRequiredService<IMapper>();
-            return mapper.Map<TDestination>(source);
+            return _mapper.Map<TDestination>(source);
         }
 
         public static TDestination Map<TSource, TDestination>(TSource source)
         {
-            var mapper = _serviceProvider.GetRequiredService<IMapper>();
-
-            return mapper.Map<TSource, TDestination>(source);
+            return _mapper.Map<TSource, TDestination>(source);
         }
 
         public static TDestination MapTo<TSource, TDestination>(this TSource source)
         {
-            var mapper = _serviceProvider.GetRequiredService<IMapper>();
-            return mapper.Map<TSource, TDestination>(source);
+            return _mapper.Map<TSource, TDestination>(source);
         }
 
         public static TDestination MapTo<TDestination>(this object source)
         {
-            var mapper = _serviceProvider.GetRequiredService<IMapper>();
-            return mapper.Map<TDestination>(source);
+            return _mapper.Map<TDestination>(source);
         }
 
         public static List<TDestination> MapToList<TDestination>(this IEnumerable source)
         {
-            var mapper = _serviceProvider.GetRequiredService<IMapper>();
-            return mapper.Map<List<TDestination>>(source);
+            return _mapper.Map<List<TDestination>>(source);
         }
 
         public static List<TDestination> MapToList<TSource, TDestination>(this IEnumerable<TSource> source)
         {
-            var mapper = _serviceProvider.GetRequiredService<IMapper>();
-            return mapper.Map<List<TDestination>>(source);
+            return _mapper.Map<List<TDestination>>(source);
         }
     }
 }

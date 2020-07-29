@@ -6,6 +6,7 @@ using StackExchange.Profiling;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using AutoMapper;
 
 namespace NetCoreTemplate.Application.Application
 {
