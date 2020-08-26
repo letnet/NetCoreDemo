@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreTemplate.Infrastruct
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreTemplate.Utility", "NetCoreTemplate.Utility\NetCoreTemplate.Utility.csproj", "{D5C4B086-84DA-45F2-9C91-7CA060ED430A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5C296079-27D4-4A6A-8A2F-FE7ADA9B89C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8BF97634-E872-4480-A8EB-EBBA6557AD02} = {5C296079-27D4-4A6A-8A2F-FE7ADA9B89C0}
+		{C312F6AA-76CC-4272-A690-231B9F3CA9E8} = {5C296079-27D4-4A6A-8A2F-FE7ADA9B89C0}
+		{AA06B6C8-0211-4D42-AFD0-1CF2DB4C0DFF} = {5C296079-27D4-4A6A-8A2F-FE7ADA9B89C0}
+		{8791B8A9-1A64-4047-9D94-C2135C12D47C} = {5C296079-27D4-4A6A-8A2F-FE7ADA9B89C0}
+		{D5C4B086-84DA-45F2-9C91-7CA060ED430A} = {5C296079-27D4-4A6A-8A2F-FE7ADA9B89C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7E3A6187-C3BB-4473-966D-F415DB15E562}

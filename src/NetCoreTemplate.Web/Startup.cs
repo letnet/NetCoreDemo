@@ -1,9 +1,8 @@
 using AutoMapper;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,8 +11,9 @@ using Microsoft.OpenApi.Models;
 using NetCoreTemplate.Infrastructure;
 using NetCoreTemplate.Infrastructure.Repositories;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -55,7 +55,16 @@ namespace NetCoreTemplate.Web
                         };
                     });
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+            .AddNewtonsoftJson(setupAction =>
+            {
+                setupAction.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+            });
+            //使用代理服务器
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            }); 
 
             // 注册Swagger服务
             services.AddSwaggerGen(c =>
@@ -73,6 +82,11 @@ namespace NetCoreTemplate.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //使用代理服务器
+            app.UseForwardedHeaders();
+            //设置请求基路径
+            app.UsePathBase(Configuration.GetValue<string>("PathBase"));
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -89,7 +103,7 @@ namespace NetCoreTemplate.Web
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "NetCoreTemplate V1");
+                c.SwaggerEndpoint("v1/swagger.json", "NetCoreTemplate V1");
             });
 
             app.UseHttpsRedirection();

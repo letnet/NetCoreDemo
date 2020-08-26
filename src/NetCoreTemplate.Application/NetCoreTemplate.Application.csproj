@@ -4,6 +4,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp3.1\NetCoreTemplate.Application.xml</DocumentationFile>
+    <OutputPath>bin\Debug\netcoreapp3.1\</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.0.0" />
   </ItemGroup>
