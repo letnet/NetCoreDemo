@@ -17,6 +17,7 @@ Write-Host 'Start copy folders...'
 $newRoot=$newProjectName
 mkdir $newRoot
 Copy-Item -Recurse .\src\ .\$newRoot\src\
+Copy-Item .gitattributes .\$newRoot\
 Copy-Item .gitignore .\$newRoot\
 Copy-Item LICENSE .\$newRoot\
 Copy-Item README.md .\$newRoot\
